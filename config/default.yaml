@@ -1,0 +1,57 @@
+dataset:
+  name: cifar10
+  root: data
+  num_workers: 4
+  pin_memory: true
+
+runs:
+  dir: runs
+  name_format: "{model}-{seed}"
+
+model_rules:
+  batch_norm: false
+
+split:
+  train: 45000
+  val: 5000
+  test: 10000
+  val_split_seed: 0
+  stratified: true
+
+optimizer:
+  name: sgd
+  momentum: 0.9
+  nesterov: true
+  weight_decay: 5e-4
+
+training:
+  epochs: 100
+  batch_size: 128
+  loss: cross_entropy
+  gradient_clipping: null
+
+lr_schedule:
+  type: cosine
+  base_lr: 0.1
+  warmup_epochs: 0
+
+augmentations:
+  train:
+    - random_crop: {size: 32, padding: 4}
+    - horizontal_flip: {p: 0.5}
+    - normalize: cifar10
+  eval:
+    - normalize: cifar10
+
+seeds:
+  dev: [0]
+  final: [0, 1, 2]
+
+parameter_budget:
+  rule: match_parameters
+  tolerance: 0.10   # ±10%
+  enforcement: adjust_width
+
+logging:
+  log_every_epoch: true
+  save_best_model: false
