@@ -5,12 +5,19 @@
 
 # Constants
 - Optimizer: SGD + Momentum (target is to study inductive bias, using AdamW can cause blurs)
-- LR Schedule: _
-- Batch Size: _
+- LR Schedule: Cosine decay (smoother than Step decay, usually less fiddly)
+- Batch Size: 128 (common across many models; LR Scaling Rule | LR = 0.1 * (batch_size / 128))
 - Epochs: 100
-- Augmentations: _
-- Training seed(s): _
-- Parameter Budget Rule: _
+- Augmentations: 
+    - Train:
+        - RandomCrop(32, padding=4)
+        - RandomHorizontalFlip(p=0.5)
+        - Normalize(CIFAR-10 mean/std)
+    - Test/Val:
+        - Normalize only
+- Training seed(s): [0, 1, 2], report mean +- std
+- Parameter Budget Rule: Match parameter count within +-10% across models
+    - adjust width (channels/hidden units) until params match
 
 - Momentum: 0.9
 - Nesterov: True
