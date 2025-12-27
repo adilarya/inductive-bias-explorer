@@ -32,7 +32,7 @@ training:
 
 lr_schedule:
   type: cosine
-  base_lr: 0.1
+  base_lr: 0.01
   warmup_epochs: 0
 
 augmentations:
