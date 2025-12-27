@@ -11,7 +11,7 @@ def _get_normalize(name: str) -> transforms.Normalize:
         return transforms.Normalize(mean=_CIFAR10_MEAN, std=_CIFAR10_STD)
     raise ValueError(f"Unknown normalize preset: {name}")
 
-def _build_one(op: Dict[str, Any]) -> transforms.Transform:
+def _build_one(op: Dict[str, Any]):
     if len(op) != 1:
         raise ValueError(f"Each augmentation entry must have exactly one key. Got: {op}")
     
