@@ -13,7 +13,10 @@ def build_model(model_name: str, cfg) -> nn.Module:
             raise ValueError("cfg.model_rules.batch_norm is True but this project phase freezes BN off.")
         
     if name in ("mlp", "mlp_classifier"):
-        return MLPClassifier(num_classes=10)
+        h = int(getattr(cfg.models.mlp, "hidden_dim", 512))
+        L = int(getattr(cfg.models.mlp, "num_hidden_layers", 2))
+        drop = float(getattr(cfg.models.mlp, "dropout", 0.0))
+        return MLPClassifier(num_classes=10, hidden_dim=h, num_hidden_layers=L, dropout=drop)
     
     if name in ("cnn_tiny", "tinycnn", "tiny_cnn"):
         return TinyCNN(num_classes=10)

@@ -1,0 +1,11 @@
+{
+  "best_epoch": 87,
+  "best_val_acc": 0.574,
+  "device": "cpu",
+  "epochs": 100,
+  "final_test_acc": 0.5701,
+  "final_test_loss": 1.2289885214805603,
+  "model": "mlp",
+  "seed": 0,
+  "trainable_params": 1070695
+}
