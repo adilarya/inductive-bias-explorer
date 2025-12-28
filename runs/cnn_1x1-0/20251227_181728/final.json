@@ -1,0 +1,11 @@
+{
+  "best_epoch": 85,
+  "best_val_acc": 0.6628,
+  "device": "cpu",
+  "epochs": 100,
+  "final_test_acc": 0.6723,
+  "final_test_loss": 0.9487940833091736,
+  "model": "cnn_1x1",
+  "seed": 0,
+  "trainable_params": 1053642
+}
