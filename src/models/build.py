@@ -5,6 +5,7 @@ import torch.nn as nn
 from .mlp import MLPClassifier
 from .cnn_tiny import TinyCNN 
 from .cnn_1x1 import CNN1x1
+from .cnn_no_pool import CNNNoPool
 
 def build_model(model_name: str, cfg) -> nn.Module:
     name = model_name.lower().strip()
@@ -24,5 +25,8 @@ def build_model(model_name: str, cfg) -> nn.Module:
     
     if name in ("cnn_1x1", "cnn1x1", "tiny_cnn_1x1"):
         return CNN1x1(num_classes=10)
+    
+    if name in ("cnn_no_pool", "cnnnopool", "tiny_cnn_no_pool"):
+        return CNNNoPool(num_classes=10)
     
     raise ValueError(f"Unknown model_name '{model_name}'. Available models: 'mlp', 'cnn_tiny'.")
